@@ -2,6 +2,10 @@ import authModel from "../../../model/authModel";
 import { hashingPassword } from "../../../utils/helper";
 
 const onCreate_Users = async(body: any) => {
+
+    // default profile picture for male and female
+    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${body.userName}`;
+    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${body.userName}`;
     
     const isUserAlreadyExist = await authModel.findOne({userName: body.userName});
     if(isUserAlreadyExist) {

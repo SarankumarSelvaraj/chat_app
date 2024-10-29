@@ -11,7 +11,8 @@ const authSchema = new mongoose.Schema({
         trim: true,
         type: String,
         enum: Object.values(GENDER)
-    }
+    },
+    profilePic: String,
 });
 
 const authModel = mongoose.model("Signup_details", authSchema);
