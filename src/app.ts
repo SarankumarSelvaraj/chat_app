@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * app.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
+
 import express, { NextFunction } from "express";
 import helmet from "helmet";
 import compression from "compression";

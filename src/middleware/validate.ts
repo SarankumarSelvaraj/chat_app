@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * validate.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
+
 import { Request, Response } from "express";
 import Joi from "joi";
 import httpStatus from "http-status";

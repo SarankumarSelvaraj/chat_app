@@ -1,4 +1,9 @@
-
+/*************************************************
+ * Chat app - chat api
+ * apiError.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
 class ApiError extends Error {
     statusCode: string | number;
     isOperational: boolean;

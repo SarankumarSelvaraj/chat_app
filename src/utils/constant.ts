@@ -1,3 +1,9 @@
+/*************************************************
+ * Chat app - chat api
+ * constant.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
 
 enum SERVER_TYPE {
     dev = "dev",

@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * mongoClient.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
+
 import mongoose from "mongoose"
 import config from "./config";
 import logger from "./logger";

@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * index.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
+
 import app from "./app";
 import config from "./config/config";
 import logger from "./config/logger";

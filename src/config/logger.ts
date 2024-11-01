@@ -1,3 +1,9 @@
+/*************************************************
+ * Chat app - chat api
+ * logger.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
 
 import path from "path";
 import winston from "winston";

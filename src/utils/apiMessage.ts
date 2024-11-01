@@ -1,7 +1,13 @@
-
+/*************************************************
+ * Chat app - chat api
+ * apiMessage.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
 
 const successMessage = {
-    success: "Success"
+    success: "Success",
+    logOutSuccess: "LogOut successfully"
 };
 
 const errorMessage = {

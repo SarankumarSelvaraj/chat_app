@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * config.ts
+ * Created by Sarankumar Selvaraj on 28/10/2024
+ * Copyright
+ *************************************************/
+
 import Joi from "joi";
 import * as path from "path";
 import dotenv from "dotenv";
