@@ -13,6 +13,7 @@ const successMessage = {
 const errorMessage = {
     somethingWentWrong: "Something went wrong",
     badRequest: "user made bad request",
+    dataNotFoundMessage: "data not found",
     404: "404 ! Page not found"
 };
 

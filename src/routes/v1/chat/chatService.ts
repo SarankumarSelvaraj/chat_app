@@ -54,4 +54,8 @@ const onGet_Message = async (params: any, user: any) => {
    return conversation;
 };
 
-export { onSend_Message, onGet_Message };
+export = 
+{ 
+  onSend_Message, 
+  onGet_Message 
+};

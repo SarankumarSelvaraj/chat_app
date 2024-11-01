@@ -10,6 +10,10 @@ const END_POINTS = {
         createUser: "/createUser",
         login: "/login",
         logOut: "/logOut"
+    },
+    chat: {
+        sendMessage: "/sendMessage",
+        getMessage: "/getMessage"
     }
 };
 
