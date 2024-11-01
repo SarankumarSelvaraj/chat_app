@@ -1,3 +1,10 @@
+/*************************************************
+ * Chat app - chat api
+ * protectedRoute.ts
+ * Created by Sarankumar Selvaraj on 01/11/2024
+ * Copyright
+ *************************************************/
+
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import { onSend_CatchResponse } from "../utils/helper";
