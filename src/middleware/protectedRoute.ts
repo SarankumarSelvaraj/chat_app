@@ -5,33 +5,33 @@
  * Copyright
  *************************************************/
 
+// authMiddleware.ts
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
-import { onSend_CatchResponse } from "../utils/helper";
-import httpStatus from "http-status";
-import authModel from "../model/authModel";
+import { UserPayload } from "../@types/userAuth";
 
-const protectedRoute = async (req: Request, res: Response, next: NextFunction) => {
-    try{
-       const token = req.cookies.jwt;
-       if(!token) {
-          return res.status(httpStatus.UNAUTHORIZED).json({
-              error: "Unauthorized - no token provided"
-          });
-       }
-      const decoded = jwt.verify(token, `${process.env.JWT_SECRET}`);
-      if(!decoded) {
-        return res.status(httpStatus.UNAUTHORIZED).json({
-            error: "Unauthorized - invalid Token"
-        });
+// Define your secret key. In a real application, store this in environment variables.
+const secretKey = process.env.JWT_SECRET || ""; // Replace with your actual secret key
+
+// JWT authentication middleware
+export const protectedRoute = (req: Request, res: Response, next: NextFunction) => {
+  // Get the token from the cookies
+  const token = req.cookies.jwt; // Assuming the cookie is named 'jwt'
+
+  if (token) {
+    // Verify the token
+    jwt.verify(token, secretKey, (err: any, decoded: any) => {
+      if (err) {
+        // Token is invalid
+        return res.status(401).json({ message: "Unauthorized: Invalid token" });
       }
-      // in this line, decoded the user data except the password 
-      const user = await authModel.findById(decoded).select("-password"); 
-    }
-    catch(error) {
-       console.log(`Error in protected route: ${error}`);
-       onSend_CatchResponse(res);
-    }
-};
 
-export default protectedRoute;
+      // Token is valid, attach user info to the request
+      req.user = decoded as UserPayload;
+      next();
+    });
+  } else {
+    // No token found
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  }
+};
