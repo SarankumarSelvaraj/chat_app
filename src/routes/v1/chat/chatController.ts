@@ -13,7 +13,8 @@ import { onSend_CatchResponse } from "../../../utils/helper";
 
 const sendMessage = async (req: Request, res: Response) => {
     try {
-        const data = await chatService.onSend_Message(req.params, req.body, req.user);
+        const { userId } = req.user ?? {};
+        const data = await chatService.onSend_Message(req.params, req.body, userId);
         if(data) {
             res.status(httpStatus.ACCEPTED).send({
                 data: data ?? null,
@@ -37,7 +38,8 @@ const sendMessage = async (req: Request, res: Response) => {
 
 const getMessage = async (req: Request, res: Response) => {
     try {
-       const data = await chatService.onGet_Message(req.params, req.user);
+        const { userId } = req.user ?? {};
+       const data = await chatService.onGet_Message(req.params, userId);
        if(data) {
          res.status(httpStatus.ACCEPTED).send({
             message: successMessage.success,
