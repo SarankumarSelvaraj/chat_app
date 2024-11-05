@@ -10,20 +10,19 @@ import END_POINTS from "../../../utils/apiUrl";
 import { validateSchema } from "../../../middleware/validate";
 import chatSchema from "./chatSchema";
 import chatController from "./chatController";
-import protectedRoute from "../../../middleware/protectedRoute";
 
-const router = express.Router();
+const chatRoutes = express.Router();
 
-router.post(
+chatRoutes.post(
     END_POINTS.chat.sendMessage,
     validateSchema(chatSchema.sendMessage),
     chatController.sendMessage
 );
 
-router.get(
+chatRoutes.get(
    END_POINTS.chat.getMessage,
    validateSchema(chatSchema.getMessage),
    chatController.getMessage
 );
 
-export default router;
+export default chatRoutes;
