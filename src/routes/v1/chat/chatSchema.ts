@@ -7,11 +7,10 @@
 
 import Joi from "joi";
 
-const sendMessage = {
-   body: Joi.object().keys({
-      message: String
-   })
-};
+const sendMessage = Joi.object({
+    receiverId: Joi.string().required(),
+    message: Joi.string()
+})
 
 const getMessage = {
     params: Joi.object().keys({
