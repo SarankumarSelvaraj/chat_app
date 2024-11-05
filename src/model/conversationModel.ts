@@ -15,7 +15,7 @@ const conversationSchema = new mongoose.Schema({
     }],
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Signup_details",
+        ref: "Message_Chat",
         default: []
     }],
 }, {timestamps: true});
