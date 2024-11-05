@@ -9,11 +9,10 @@ import conversationModel from "../../../model/conversationModel";
 import messageModel from "../../../model/messageModel";
 
 // send message api functionality
-const onSend_Message = async (params: any, body: any, user: any) => {
+const onSend_Message = async (params: any, body: any, userId: any) => {
   const { id: receiverId } = params;
   const { message } = body;
-  const senderId = user.userId;
-
+  const senderId = userId;
   // find the participants of the conversation
   let conversation = await conversationModel.findOne({
     participants: { $all: [senderId, receiverId] },
@@ -39,9 +38,10 @@ const onSend_Message = async (params: any, body: any, user: any) => {
   return saveToDb;
 };
 
-const onGet_Message = async (params: any, user: any) => {
+// get message api functionality
+const onGet_Message = async (params: any, userId: any) => {
    const { id: userToChatId } = params;
-   const senderId = user.userId;
+   const senderId = userId;
 
    const conversation = conversationModel.findOne({
        participants: { $all: [senderId, userToChatId] }
