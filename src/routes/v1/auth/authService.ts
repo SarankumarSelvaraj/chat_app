@@ -12,9 +12,10 @@ import {
   resetTokenAndSetCookie,
 } from "../../../utils/helper";
 import bcrypt from "bcrypt";
+import { Response } from "express";
 
 // signup method
-const onCreate_Users = async (body: any, res: any) => {
+const onCreate_Users = async (body: any, res: Response) => {
   // default profile picture for male and female
   const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${body.userName}`;
   const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${body.userName}`;
@@ -71,10 +72,20 @@ const onLogin_User = async (body: any, res: any) => {
 // logout method
 const onLogout_User = (res: any) => {
      resetTokenAndSetCookie(res);
-}
+};
+
+// get user for sidebar
+const onGet_Users = async (userId: any) => {
+  console.log(`User id: ${userId}`);
+   // filter the user list based on who login, that login user data shouldn't display and also data of the user which field should list.
+   const filteredUsers = await authModel.find({ _id: { $ne: userId } }).select("-password").select("-confirmPassword");
+   console.log(`Filtered Users: ${filteredUsers}`);
+   return filteredUsers;
+};
 
 export = {
   onCreate_Users,
   onLogin_User,
-  onLogout_User
+  onLogout_User,
+  onGet_Users
 };
