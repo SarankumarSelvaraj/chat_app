@@ -30,6 +30,12 @@ authRoutes.post(
   authController.logOut
 );
 
+authRoutes.get(
+  END_POINTS.chat.getUsers,
+  validateSchema(authSchema.getUsers),
+  authController.getUsers
+);
+
 export default authRoutes;
 
 
