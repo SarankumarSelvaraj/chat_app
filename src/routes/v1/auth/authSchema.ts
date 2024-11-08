@@ -21,7 +21,13 @@ const login = {
     body: Joi.object().keys({
         userName: Joi.string().email(),
         password: Joi.string().min(8)
-    })
+    }),
+};
+
+const getUsers = {
+  params: Joi.object().keys({
+     id: Joi.string()
+  })
 }
 
-export = {createUser, login};
+export = {createUser, login, getUsers};
