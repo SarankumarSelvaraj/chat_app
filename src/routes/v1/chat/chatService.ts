@@ -42,7 +42,7 @@ const onSend_Message = async (params: any, body: any, userId: any) => {
 const onGet_Message = async (params: any, userId: any) => {
    const { id: userToChatId } = params;
    const senderId = userId;
-
+  
    const conversation = conversationModel.findOne({
        participants: { $all: [senderId, userToChatId] }
    }).populate("messages");
