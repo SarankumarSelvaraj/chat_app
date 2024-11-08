@@ -5,7 +5,7 @@
  * Copyright
  *************************************************/
 
-// authMiddleware.ts
+
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { UserPayload } from "../@types/userAuth";
