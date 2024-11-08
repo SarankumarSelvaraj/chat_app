@@ -1,28 +1,24 @@
 /*************************************************
  * Chat app - chat api
- * chatRouter.ts
+ * chatSchema.ts
  * Created by Sarankumar Selvaraj on 01/11/2024
  * Copyright
  *************************************************/
 
-import express from "express";
-import END_POINTS from "../../../utils/apiUrl";
-import { validateSchema } from "../../../middleware/validate";
-import chatSchema from "./chatSchema";
-import chatController from "./chatController";
+import Joi from "joi";
 
-const chatRoutes = express.Router();
+const sendMessage = Joi.object({
+    receiverId: Joi.string().required(),
+    message: Joi.string()
+})
 
-chatRoutes.post(
-    END_POINTS.chat.sendMessage,
-    validateSchema(chatSchema.sendMessage),
-    chatController.sendMessage
-);
+const getMessage = {
+    params: Joi.object().keys({
+        id: String
+    })
+};
 
-chatRoutes.get(
-   END_POINTS.chat.getMessage,
-   validateSchema(chatSchema.getMessage),
-   chatController.getMessage
-);
-
-export default chatRoutes;
+export = {
+    sendMessage,
+    getMessage
+};
