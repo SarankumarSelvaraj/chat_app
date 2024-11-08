@@ -57,7 +57,7 @@ const login = async (req: Request, res: Response) => {
 
 const logOut = async (req: Request, res: Response) => {
    try {
-      const resetToken = await authService.onLogout_User(res) ?? null;
+       await authService.onLogout_User(res) ?? null;
         res.status(httpStatus.ACCEPTED).send({
            message: successMessage.logOutSuccess,
            success: true
@@ -67,10 +67,37 @@ const logOut = async (req: Request, res: Response) => {
      console.log(`Error occurring during: ${error}`);
      onSend_CatchResponse(res);
    }
-}
+};
+
+const getUsers = async (req: Request, res: Response) => {
+   try {
+    // const { userId } = req.user ?? {};
+    // console.log(`Request user id: ${userId}`);
+    const data = await authService.onGet_Users(req.user?.userId);
+    if(data) {
+      res.status(httpStatus.ACCEPTED).send({
+         message: successMessage.success,
+         data: data,
+         success: true
+      });
+    }
+    else {
+      res.status(httpStatus.NOT_FOUND).send({
+         message: errorMessage.dataNotFoundMessage,
+         data: null,
+         success: false
+      });
+    }
+   }
+   catch(error) {
+     console.log(`Errror occurred during: ${error}`);
+     onSend_CatchResponse(res);
+   }
+};
 
 export = {
   createUser,
   login,
-  logOut
+  logOut,
+  getUsers
 };
