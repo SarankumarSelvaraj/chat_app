@@ -7,6 +7,7 @@
 
 import conversationModel from "../../../model/conversationModel";
 import messageModel from "../../../model/messageModel";
+import { getReceiverSocketId, io } from "./socket/socketConfig";
 
 // send message api functionality
 const onSend_Message = async (params: any, body: any, userId: any) => {
@@ -35,6 +36,10 @@ const onSend_Message = async (params: any, body: any, userId: any) => {
   conversation.messages.push(newMessage._id);
 
   const saveToDb = await Promise.all([conversation.save(), newMessage.save()]);
+  const receiverSocketId = getReceiverSocketId(receiverId);
+  if(receiverId) {
+     io.to(receiverSocketId).emit("newMessage", newMessage);
+  }
   return saveToDb;
 };
 
